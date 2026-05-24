@@ -4,17 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 1.0.0 - 2026-05-24
 
 ## 0.0.18 - 2011-08-09
+### Changed
+- Simplified conditional parsing behavior to align with standard syntax.
+
 ### Removed
 - Removed support for the non-standard `elsif` conditional keyword.
 
 ### Fixed
 - Added explicit validation for `elsif` usage to surface clearer template errors.
-
-### Changed
-- Simplified conditional parsing behavior to align with standard syntax.
 
 ## 0.0.17 - 2011-08-09
 ### Added
