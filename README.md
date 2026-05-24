@@ -1,9 +1,11 @@
 ![Avatar](avatar.jpg)
 
 [![Build Status](https://github.com/cliffano/jazz/workflows/CI/badge.svg)](https://github.com/cliffano/jazz/actions?query=workflow%3ACI)
+[![Dependencies Status](https://img.shields.io/librariesio/release/npm/jazz)](https://libraries.io/npm/jazz)
+[![Code Scanning Status](https://github.com/cliffano/jazz/workflows/CodeQL/badge.svg)](https://github.com/cliffano/jazz/actions?query=workflow%3ACodeQL)
+[![Coverage Status](https://img.shields.io/coveralls/cliffano/jazz.svg)](https://coveralls.io/r/cliffano/jazz?branch=main)
 [![Security Status](https://snyk.io/test/github/cliffano/jazz/badge.svg)](https://snyk.io/test/github/cliffano/jazz)
-[![Dependencies Status](https://img.shields.io/librariesio/release/pypi/jazz)](https://libraries.io/github/cliffano/jazz)
-[![Published Version](https://img.shields.io/pypi/v/jazz.svg)](https://pypi.python.org/pypi/jazz)
+[![Published Version](https://img.shields.io/npm/v/jazz.svg)](https://www.npmjs.com/package/jazz)
 
 # Jazz
 
