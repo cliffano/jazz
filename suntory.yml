@@ -1,14 +1,15 @@
 ---
-package_name: ae86
+package_name: jazz
 author: Cliffano Subagio
 generator:
-  component: node-cli
+  component: node-lib
   inputs:
-    project_id: ae86
-    project_name: AE86
-    project_desc: Old school static website generator written in Node.js
+    project_id: jazz
+    project_name: Jazz
+    project_desc: A minimalistic template engine with zero runtime dependency
     author_name: Cliffano Subagio
     author_email: cliffano@gmail.com
     author_url: https://github.com/cliffano
     github_id: cliffano
-    github_repo: ae86
+    github_repo: jazz
+    github_token_prefix: STUDIO

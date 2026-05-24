@@ -1,0 +1,22 @@
+---
+name: Publish
+'on':
+  push:
+    tags:
+      - '*'
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '26'
+          registry-url: https://registry.npmjs.org
+      - run: npm install
+      - run: npm publish
