@@ -34,8 +34,8 @@
   [32m  [32m✔[39m[0m[90m should expose default and named api members[0m
 
 [0m  jazz - compile[0m
-  [32m  [32m✔[39m[0m[90m should wire scanner parser and compiler with default options[0m[33m (44ms)[0m
-(node:2435) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+  [32m  [32m✔[39m[0m[90m should wire scanner parser and compiler with default options[0m[33m (45ms)[0m
+(node:2372) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
   [32m  [32m✔[39m[0m[90m should apply parser and compiler debug flags and filename[0m
 
