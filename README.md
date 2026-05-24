@@ -1,8 +1,8 @@
 ![Avatar](avatar.jpg)
 
-[![Build Status](https://github.com/littlegodzillalaboratory/jazz/workflows/CI/badge.svg)](https://github.com/littlegodzillalaboratory/jazz/actions?query=workflow%3ACI)
-[![Security Status](https://snyk.io/test/github/littlegodzillalaboratory/jazz/badge.svg)](https://snyk.io/test/github/littlegodzillalaboratory/jazz)
-[![Dependencies Status](https://img.shields.io/librariesio/release/pypi/jazz)](https://libraries.io/github/littlegodzillalaboratory/jazz)
+[![Build Status](https://github.com/cliffano/jazz/workflows/CI/badge.svg)](https://github.com/cliffano/jazz/actions?query=workflow%3ACI)
+[![Security Status](https://snyk.io/test/github/cliffano/jazz/badge.svg)](https://snyk.io/test/github/cliffano/jazz)
+[![Dependencies Status](https://img.shields.io/librariesio/release/pypi/jazz)](https://libraries.io/github/cliffano/jazz)
 [![Published Version](https://img.shields.io/pypi/v/jazz.svg)](https://pypi.python.org/pypi/jazz)
 
 # Jazz
