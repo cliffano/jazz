@@ -1,6 +1,19 @@
-Jazz is a simple template engine built specifically for nodejs.
+![Avatar](avatar.jpg)
 
-# Usage
+[![Build Status](https://github.com/littlegodzillalaboratory/jazz/workflows/CI/badge.svg)](https://github.com/littlegodzillalaboratory/jazz/actions?query=workflow%3ACI)
+[![Security Status](https://snyk.io/test/github/littlegodzillalaboratory/jazz/badge.svg)](https://snyk.io/test/github/littlegodzillalaboratory/jazz)
+[![Dependencies Status](https://img.shields.io/librariesio/release/pypi/jazz)](https://libraries.io/github/littlegodzillalaboratory/jazz)
+[![Published Version](https://img.shields.io/pypi/v/jazz.svg)](https://pypi.python.org/pypi/jazz)
+
+# Jazz
+
+Jazz is a minimalistic template engine with zero runtime dependency.
+
+## Installation
+
+    npm install jazz
+
+## Usage
 
     var jazz = require("jazz");
     var sys = require("sys");
@@ -12,9 +25,7 @@ This example would output the following:
 
     my template source code lolmuffin
 
-# Syntax
-
-## Printing variables
+### Printing variables
 
     {someVariable}
 
@@ -25,7 +36,7 @@ This works for any type of expression, so the following should also work:
     {45}
     {a eq b}
 
-## Filter functions
+### Filter functions
 
 You can call filter functions like so:
 
@@ -64,7 +75,7 @@ result. e.g. here we simulate a blocking operation using setTimeout().
 Note that even though the execution of the callback is delayed, this example still
 works.
 
-## Conditional Statements
+### Conditional Statements
 
 You can check if a variable evaluates to a true value like so:
 
@@ -120,7 +131,7 @@ You can also group expressions using parentheses:
         ...
     {end}
 
-## Looping over an array
+### Looping over an array
 
     {foreach item in someArray}
         <p>{item}</p>
@@ -130,13 +141,13 @@ You can also group expressions using parentheses:
 The value being iterated over can be any expression supporting
 an Array-like interface.
 
-## Looping over an object
+### Looping over an object
 
     {foreach pair in someObject}
         <p>{pair.key} = {pair.value}</p>
     {end}
     
-## Synchronous functions
+### Synchronous functions
 
     {if @blah('a')}
         <p>There were so many blahs in a</p>
@@ -144,7 +155,7 @@ an Array-like interface.
 
 The function is provided to the template the same way asynchronous functions are, just with a return instead of a cb.
 
-## Loop counters / index
+### Loop counters / index
 
     {foreach pair in someObject}
         <p>Loop number (1 based): {__count}</p>
@@ -152,7 +163,18 @@ The function is provided to the template the same way asynchronous functions are
         <p>{pair.key} = {pair.value}</p>
     {end}
     
-## Looking into arrays/objects
+### Looking into arrays/objects
 
         <p>{object['array'][0].cheese}</p>
 
+## Colophon
+
+[Developer's Guide](https://cliffano.github.io/developers_guide.html#nodejs)
+
+Build reports:
+
+* [Code complexity report](https://cliffano.github.io/jazz/complexity/plato/index.html)
+* [Unit tests report](https://cliffano.github.io/jazz/test/mocha.txt)
+* [Test coverage report](https://cliffano.github.io/jazz/coverage/c8/index.html)
+* [Integration tests report](https://cliffano.github.io/jazz/test-integration/cmdt.txt)
+* [API Documentation](https://cliffano.github.io/jazz/doc/jsdoc/index.html)
