@@ -1,0 +1,86 @@
+
+[0m[0m
+[0m  ast - node toString[0m
+  [32m  [32m✔[39m[0m[90m should stringify every node type[0m
+  [32m  [32m✔[39m[0m[90m should expose node constructors in default export[0m
+
+[0m  compiler - exports[0m
+  [32m  [32m✔[39m[0m[90m should expose compiler api and events module[0m
+
+[0m  compiler - CompileError[0m
+  [32m  [32m✔[39m[0m[90m should render compile error string with fallback location[0m
+
+[0m  compiler - Program[0m
+  [32m  [32m✔[39m[0m[90m should process namespace values in global order[0m
+  [32m  [32m✔[39m[0m[90m should support eval alias for backwards compatibility[0m
+
+[0m  compiler - compile[0m
+  [32m  [32m✔[39m[0m[90m should compile and execute mixed template statements[0m
+  [32m  [32m✔[39m[0m[90m should compile foreach over object values[0m
+  [32m  [32m✔[39m[0m[90m should compile direct GetArr statement branch[0m
+
+[0m  compiler - internals[0m
+  [32m  [32m✔[39m[0m[90m should create incrementing temporary variable names[0m
+  [32m  [32m✔[39m[0m[90m should compile each expression type[0m
+  [32m  [32m✔[39m[0m[90m should throw compile error for unknown expression[0m
+  [32m  [32m✔[39m[0m[90m should throw compile error for unknown statement[0m
+
+[0m  error - SyntaxError[0m
+  [32m  [32m✔[39m[0m[90m should set name location and message[0m
+  [32m  [32m✔[39m[0m[90m should use fallback location placeholders when row or col is missing[0m
+  [32m  [32m✔[39m[0m[90m should expose SyntaxError via default export[0m
+
+[0m  jazz - exports[0m
+  [32m  [32m✔[39m[0m[90m should expose default and named api members[0m
+
+[0m  jazz - compile[0m
+  [32m  [32m✔[39m[0m[90m should wire scanner parser and compiler with default options[0m[33m (45ms)[0m
+  [32m  [32m✔[39m[0m[90m should apply parser and compiler debug flags and filename[0m
+
+[0m  parser - exports[0m
+  [32m  [32m✔[39m[0m[90m should expose parser class and factory[0m
+
+[0m  parser - parse[0m
+  [32m  [32m✔[39m[0m[90m should parse echo text and expression statements[0m
+  [32m  [32m✔[39m[0m[90m should parse if elif else statements[0m
+  [32m  [32m✔[39m[0m[90m should parse foreach and keep iterator as local[0m
+  [32m  [32m✔[39m[0m[90m should parse get attribute chains hash literals and boolean expressions[0m
+  [32m  [32m✔[39m[0m[90m should parse call argument list with zero and multiple values[0m
+  [32m  [32m✔[39m[0m[90m should raise syntax error when expression is invalid[0m
+  [32m  [32m✔[39m[0m[90m should raise syntax error when required token is missing[0m
+
+[0m  parser - helpers[0m
+  [32m  [32m✔[39m[0m[90m should peek next token and reuse buffered token[0m
+  [32m  [32m✔[39m[0m[90m should track locals and globals without duplicates[0m
+  [32m  [32m✔[39m[0m[90m should tolerate parseGetAttrList default switch branch[0m
+
+[0m  scanner - exports[0m
+  [32m  [32m✔[39m[0m[90m should expose Scanner and factory in default export[0m
+  [32m  [32m✔[39m[0m[90m should create scanner instance from factory[0m
+  [32m  [32m✔[39m[0m[90m should default filename when none is provided[0m
+
+[0m  scanner - next[0m
+  [32m  [32m✔[39m[0m[90m should scan echo text and escaped braces[0m
+  [32m  [32m✔[39m[0m[90m should scan code keywords punctuation and primitives[0m
+  [32m  [32m✔[39m[0m[90m should decode escaped characters and keep unknown escape sequences[0m
+  [32m  [32m✔[39m[0m[90m should throw syntax error for malformed escape-heavy string input[0m
+  [32m  [32m✔[39m[0m[90m should parse hexadecimal numbers containing lowercase letters[0m
+  [32m  [32m✔[39m[0m[90m should return accumulated value for unterminated strings[0m
+  [32m  [32m✔[39m[0m[90m should keep dotted keywords as identifiers[0m
+  [32m  [32m✔[39m[0m[90m should process nested braces and return eof after closing code block[0m
+  [32m  [32m✔[39m[0m[90m should advance row and reset column while scanning code newlines[0m
+  [32m  [32m✔[39m[0m[90m should recognise keyword at end of source[0m
+  [32m  [32m✔[39m[0m[90m should throw syntax error for unexpected token in echo state[0m
+  [32m  [32m✔[39m[0m[90m should throw syntax error for unsupported elsif keyword[0m
+  [32m  [32m✔[39m[0m[90m should throw syntax error for unknown code token[0m
+
+[0m  scanner - internal helpers[0m
+  [32m  [32m✔[39m[0m[90m should create tokens from string and object attrs[0m
+
+[0m  tokens - constants[0m
+  [32m  [32m✔[39m[0m[90m should expose all token constants as namespaced values[0m
+  [32m  [32m✔[39m[0m[90m should expose constants in default export[0m
+
+
+[92m [0m[32m 49 passing[0m[90m (73ms)[0m
+

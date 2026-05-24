@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - lib/jazz/scanner.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>lib/jazz/scanner.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">51.65</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">410</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">116.86</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">3.88</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">&quot;use strict&quot;;
+
+import * as tokens from &quot;./tokens.js&quot;;
+import { SyntaxError } from &quot;./error.js&quot;;
+
+const STATE_ECHO = 0;
+const STATE_CODE = 1;
+
+function isIdentChar(char) {
+  if (typeof char === &quot;undefined&quot;) {
+    return false;
+  }
+
+  return (
+    (char &gt;= &quot;a&quot; &amp;&amp; char &lt;= &quot;z&quot;) ||
+    (char &gt;= &quot;A&quot; &amp;&amp; char &lt;= &quot;Z&quot;) ||
+    (char &gt;= &quot;0&quot; &amp;&amp; char &lt;= &quot;9&quot;) ||
+    char === &quot;_&quot;
+  );
+}
+
+function keyword(name, source, index) {
+  let cursor = index;
+
+  if (source[cursor - 1] === &quot;.&quot;) {
+    return false;
+  }
+
+  while (cursor &lt; source.length &amp;&amp; cursor - index &lt; name.length) {
+    if (source[cursor] !== name[cursor - index]) {
+      return false;
+    }
+    cursor += 1;
+  }
+
+  return !isIdentChar(source[cursor]);
+}
+
+function ident(source, index) {
+  let result = &quot;&quot;;
+  let cursor = index;
+
+  while (cursor &lt; source.length) {
+    if (isIdentChar(source[cursor])) {
+      result += source[cursor];
+      cursor += 1;
+    } else {
+      break;
+    }
+  }
+
+  return result;
+}
+
+function num(source, index) {
+  let isHex = false;
+  let seenDecimal = false;
+  let cursor = index;
+
+  if (
+    source.length &gt;= index + 2 &amp;&amp;
+    source[index] === &quot;0&quot; &amp;&amp;
+    source[index + 1] === &quot;x&quot;
+  ) {
+    isHex = true;
+    cursor += 2;
+  }
+
+  while (cursor &lt; source.length) {
+    if (source[cursor] &gt;= &quot;0&quot; &amp;&amp; source[cursor] &lt;= &quot;9&quot;) {
+      cursor += 1;
+    } else if (!isHex &amp;&amp; !seenDecimal &amp;&amp; source[cursor] === &quot;.&quot;) {
+      seenDecimal = true;
+      cursor += 1;
+    } else if (isHex) {
+      if (
+        (source[cursor] &gt;= &quot;a&quot; &amp;&amp; source[cursor] &lt;= &quot;f&quot;) ||
+        (source[cursor] &gt;= &quot;A&quot; &amp;&amp; source[cursor] &lt;= &quot;F&quot;)
+      ) {
+        cursor += 1;
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+
+  return source.slice(index, cursor);
+}
+
+function str(source, index) {
+  let result = &quot;&quot;;
+  const quote = source[index];
+  let escaped = false;
+  let cursor = index + 1;
+
+  while (cursor &lt; source.length) {
+    if (source[cursor] === quote) {
+      return result;
+    }
+
+    if (!escaped &amp;&amp; source[cursor] === &quot;\\&quot;) {
+      escaped = true;
+      cursor += 1;
+      continue;
+    }
+
+    if (escaped) {
+      switch (source[cursor]) {
+        case &quot;\\&quot;:
+          result += &quot;\\&quot;;
+          break;
+        case &quot;n&quot;:
+          result += &quot;\n&quot;;
+          break;
+        case &quot;r&quot;:
+          result += &quot;\r&quot;;
+          break;
+        case &quot;t&quot;:
+          result += &quot;\t&quot;;
+          break;
+        default:
+          result += `\\${source[cursor]}`;
+      }
+      cursor += 1;
+      escaped = false;
+      continue;
+    }
+
+    result += source[cursor];
+    cursor += 1;
+  }
+
+  return result;
+}
+
+class Scanner {
+  constructor(source, filename) {
+    this.source = source;
+    this.pos = 0;
+    this.filename = filename || &quot;&lt;unknown&gt;&quot;;
+    this.row = 1;
+    this.col = 1;
+    this.braceLevel = 0;
+    this.state = STATE_ECHO;
+  }
+
+  next() {
+    if (this.state === STATE_ECHO) {
+      return this._echoState();
+    }
+
+    return this._codeState();
+  }
+
+  _syntaxError(message) {
+    throw new SyntaxError(this.filename, this.row, this.col, message);
+  }
+
+  _unexpectedToken(token, didYouMean) {
+    const hint = didYouMean ? `, did you mean &#039;${didYouMean}&#039;` : &quot;&quot;;
+    return this._syntaxError(`unexpected token: &#039;${token}&#039;${hint}`);
+  }
+
+  _echoState() {
+    const row = this.row;
+    const col = this.col;
+    let cursor = this.pos;
+    const source = this.source;
+    let value = &quot;&quot;;
+
+    const step = () =&gt; {
+      cursor += 1;
+      this.col += 1;
+    };
+
+    while (cursor &lt; source.length) {
+      if (source[cursor] === &quot;{&quot;) {
+        if (cursor + 1 &lt; source.length &amp;&amp; source[cursor + 1] === &quot;{&quot;) {
+          value += &quot;{&quot;;
+          step();
+        } else {
+          this.state = STATE_CODE;
+          break;
+        }
+      } else if (source[cursor] === &quot;}&quot;) {
+        if (cursor + 1 &lt; source.length &amp;&amp; source[cursor + 1] === &quot;}&quot;) {
+          value += &quot;}&quot;;
+          step();
+        } else {
+          this._unexpectedToken(source[cursor]);
+        }
+      } else if (source[cursor] === &quot;\n&quot;) {
+        this.col = 0;
+        this.row += 1;
+        value += source[cursor];
+      } else {
+        value += source[cursor];
+      }
+
+      step();
+    }
+
+    this.pos = cursor + 1;
+
+    if (value.length &gt; 0) {
+      return this._makeToken(tokens.ECHO, value, { row, col });
+    }
+
+    if (this.pos &gt;= source.length) {
+      return this._makeToken(tokens.EOF);
+    }
+
+    return this.next();
+  }
+
+  _makeToken(type, attrs, options) {
+    const row =
+      options &amp;&amp; typeof options.row !== &quot;undefined&quot; ? options.row : this.row;
+    const col =
+      options &amp;&amp; typeof options.col !== &quot;undefined&quot; ? options.col : this.col;
+    const result = { type, row, col };
+
+    if (typeof attrs === &quot;string&quot;) {
+      result.value = attrs;
+    } else if (attrs &amp;&amp; typeof attrs === &quot;object&quot;) {
+      Object.keys(attrs).forEach((attr) =&gt; {
+        if (Object.prototype.hasOwnProperty.call(attrs, attr)) {
+          result[attr] = attrs[attr];
+        }
+      });
+    }
+
+    return result;
+  }
+
+  _codeState() {
+    let cursor = this.pos;
+    const source = this.source;
+    let result;
+
+    const step = (count = 1) =&gt; {
+      cursor += count;
+      this.col += count;
+    };
+
+    while (cursor &lt; source.length) {
+      if (source[cursor] === &quot; &quot; || source[cursor] === &quot;\t&quot;) {
+        step();
+      } else if (source[cursor] === &quot;{&quot;) {
+        this.braceLevel += 1;
+        result = this._makeToken(&quot;{&quot;);
+        step();
+        break;
+      } else if (source[cursor] === &quot;}&quot; &amp;&amp; this.braceLevel === 0) {
+        this.state = STATE_ECHO;
+        step();
+        break;
+      } else if (source[cursor] === &quot;}&quot;) {
+        this.braceLevel -= 1;
+        result = this._makeToken(&quot;}&quot;);
+        step();
+        break;
+      } else if (source[cursor] === &quot;\n&quot;) {
+        this.col = 1;
+        this.row += 1;
+        cursor += 1;
+      } else if (source[cursor] === &quot;(&quot;) {
+        result = this._makeToken(&quot;(&quot;);
+        step();
+        break;
+      } else if (source[cursor] === &quot;)&quot;) {
+        result = this._makeToken(&quot;)&quot;);
+        step();
+        break;
+      } else if (source[cursor] === &quot;[&quot;) {
+        result = this._makeToken(&quot;[&quot;);
+        step();
+        break;
+      } else if (source[cursor] === &quot;]&quot;) {
+        result = this._makeToken(&quot;]&quot;);
+        step();
+        break;
+      } else if (source[cursor] === &quot;,&quot;) {
+        result = this._makeToken(&quot;,&quot;);
+        step();
+        break;
+      } else if (source[cursor] === &quot;.&quot;) {
+        result = this._makeToken(&quot;.&quot;);
+        step();
+        break;
+      } else if (source[cursor] === &quot;:&quot;) {
+        result = this._makeToken(&quot;:&quot;);
+        step();
+        break;
+      } else if (source[cursor] === &#039;&quot;&#039; || source[cursor] === &quot;&#039;&quot;) {
+        const value = str(source, cursor);
+        result = this._makeToken(tokens.STR, value);
+        step(value.length + 2);
+        break;
+      } else if (source[cursor] &gt;= &quot;0&quot; &amp;&amp; source[cursor] &lt;= &quot;9&quot;) {
+        const value = num(source, cursor);
+        result = this._makeToken(tokens.NUM, value);
+        step(value.length);
+        break;
+      } else if (source[cursor] === &quot;@&quot;) {
+        result = this._makeToken(&quot;@&quot;);
+        step();
+        break;
+      } else if (keyword(&quot;if&quot;, source, cursor)) {
+        result = this._makeToken(tokens.IF);
+        step(2);
+        break;
+      } else if (keyword(&quot;elif&quot;, source, cursor)) {
+        result = this._makeToken(tokens.ELIF);
+        step(4);
+        break;
+      } else if (keyword(&quot;elsif&quot;, source, cursor)) {
+        this._unexpectedToken(&quot;elsif&quot;, &quot;elif&quot;);
+      } else if (keyword(&quot;else&quot;, source, cursor)) {
+        result = this._makeToken(tokens.ELSE);
+        step(4);
+        break;
+      } else if (keyword(&quot;and&quot;, source, cursor)) {
+        result = this._makeToken(tokens.AND);
+        step(3);
+        break;
+      } else if (keyword(&quot;or&quot;, source, cursor)) {
+        result = this._makeToken(tokens.OR);
+        step(2);
+        break;
+      } else if (keyword(&quot;not&quot;, source, cursor)) {
+        result = this._makeToken(tokens.NOT);
+        step(3);
+        break;
+      } else if (keyword(&quot;eq&quot;, source, cursor)) {
+        result = this._makeToken(tokens.EQ);
+        step(2);
+        break;
+      } else if (keyword(&quot;neq&quot;, source, cursor)) {
+        result = this._makeToken(tokens.NEQ);
+        step(3);
+        break;
+      } else if (keyword(&quot;gt&quot;, source, cursor)) {
+        result = this._makeToken(tokens.GT);
+        step(2);
+        break;
+      } else if (keyword(&quot;foreach&quot;, source, cursor)) {
+        result = this._makeToken(tokens.FOREACH);
+        step(7);
+        break;
+      } else if (keyword(&quot;in&quot;, source, cursor)) {
+        result = this._makeToken(tokens.IN);
+        step(2);
+        break;
+      } else if (keyword(&quot;end&quot;, source, cursor)) {
+        result = this._makeToken(tokens.END);
+        step(3);
+        break;
+      } else if (keyword(&quot;empty&quot;, source, cursor)) {
+        result = this._makeToken(tokens.EMPTY);
+        step(5);
+        break;
+      } else if (keyword(&quot;true&quot;, source, cursor)) {
+        result = this._makeToken(tokens.BOOL, &quot;true&quot;);
+        step(4);
+        break;
+      } else if (keyword(&quot;false&quot;, source, cursor)) {
+        result = this._makeToken(tokens.BOOL, &quot;false&quot;);
+        step(5);
+        break;
+      } else if (
+        (source[cursor] &gt;= &quot;a&quot; &amp;&amp; source[cursor] &lt;= &quot;z&quot;) ||
+        (source[cursor] &gt;= &quot;A&quot; &amp;&amp; source[cursor] &lt;= &quot;Z&quot;) ||
+        source[cursor] === &quot;_&quot;
+      ) {
+        const value = ident(source, cursor);
+        result = this._makeToken(tokens.IDENT, value);
+        step(value.length);
+        break;
+      } else {
+        this._unexpectedToken(source[cursor]);
+      }
+    }
+
+    this.pos = cursor;
+
+    if (result) {
+      return result;
+    }
+
+    if (this.pos &gt;= source.length) {
+      return this._makeToken(tokens.EOF);
+    }
+
+    return this.next();
+  }
+}
+
+function createScanner(source, filename) {
+  return new Scanner(source, filename);
+}
+
+export { Scanner, createScanner };
+
+export default {
+  Scanner,
+  createScanner,
+};</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ cyclomatic }} <br>
+    Length : {{ halstead.length }} <br>
+    Difficulty : {{ halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>
