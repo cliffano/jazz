@@ -1,4 +1,5 @@
 {
+  "tagFormat": "v{version}",
   "resources": [
     {
       "path": "package.json",
@@ -16,7 +17,8 @@
       "type": "yaml",
       "params": {
         "property": "jobs.build.steps[0].with.ref",
-        "post_release_value": "main"
+        "post_release_value": "main",
+        "release_format": "v{version}"
       }
     }
   ]
