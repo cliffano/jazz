@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ## 1.0.0 - 2026-05-24
+### Added
+- Start using Suntory as Makefile
+- Add tests with 100% coverage
+
+### Changed
+- Refactor codebase to ESM
 
 ## 0.0.18 - 2011-08-09
 ### Changed
