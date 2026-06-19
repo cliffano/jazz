@@ -1,7 +1,7 @@
-(node:2433) [DEP0151] DeprecationWarning: Package /opt/hostedtoolcache/node/24.16.0/x64/lib/node_modules/bob/node_modules/jazz/ has a "main" field set to "./lib/jazz", excluding the full filename and extension to the resolved file at "lib/jazz.js", imported from /opt/hostedtoolcache/node/24.16.0/x64/lib/node_modules/bob/lib/bob.js.
+(node:2458) [DEP0151] DeprecationWarning: Package /opt/hostedtoolcache/node/26.3.1/x64/lib/node_modules/bob/node_modules/jazz/ has a "main" field set to "./lib/jazz", excluding the full filename and extension to the resolved file at "lib/jazz.js", imported from /opt/hostedtoolcache/node/26.3.1/x64/lib/node_modules/bob/lib/bob.js.
  Automatic extension resolution of the "main" field is deprecated for ES modules.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-test | /opt/hostedtoolcache/node/24.16.0/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
+test | /opt/hostedtoolcache/node/26.3.1/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
 
 [0m[0m
 [0m  ast - node toString[0m
@@ -38,7 +38,9 @@ test | /opt/hostedtoolcache/node/24.16.0/x64/lib/node_modules/bob/node_modules/.
   [32m  [32m✔[39m[0m[90m should expose default and named api members[0m
 
 [0m  jazz - compile[0m
-  [32m  [32m✔[39m[0m[90m should wire scanner parser and compiler with default options[0m[33m (51ms)[0m
+  [32m  [32m✔[39m[0m[90m should wire scanner parser and compiler with default options[0m[33m (50ms)[0m
+(node:2478) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
   [32m  [32m✔[39m[0m[90m should apply parser and compiler debug flags and filename[0m
 
 [0m  parser - exports[0m
@@ -86,7 +88,7 @@ test | /opt/hostedtoolcache/node/24.16.0/x64/lib/node_modules/bob/node_modules/.
   [32m  [32m✔[39m[0m[90m should expose constants in default export[0m
 
 
-[92m [0m[32m 49 passing[0m[90m (88ms)[0m
+[92m [0m[32m 49 passing[0m[90m (87ms)[0m
 
 SUCCESS | exit code 0
 --------------|---------|----------|---------|---------|-------------------
