@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">31</p>
+      <p class="stat">41</p>
     </div>
   </div>
   <div class="row historical">
@@ -96,6 +96,16 @@ import { SyntaxError } from &quot;./jazz/error.js&quot;;
 import { createParser } from &quot;./jazz/parser.js&quot;;
 import { createScanner } from &quot;./jazz/scanner.js&quot;;
 
+/**
+ * Compile a Jazz template into an executable program.
+ *
+ * @param {string} source: template source text
+ * @param {Object} [options]: optional compiler and parser options
+ * @param {string} [options.filename]: filename used for error reporting
+ * @param {boolean} [options[&quot;parser:debug&quot;]]: enable parser debug mode
+ * @param {boolean} [options[&quot;compiler:debug&quot;]]: enable compiler debug mode
+ * @returns {Object} compiled program with process(namespace, cb)
+ */
 function compile(source, options) {
   const opts = options || {};
   const scanner = createScanner(source, opts.filename);
