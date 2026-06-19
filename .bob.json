@@ -16,7 +16,7 @@
     "type": "c8"
   },
   "test-integration": {
-    "type": "cmdt"
+    "type": "mocha"
   },
   "doc": {
     "type": "jsdoc"
