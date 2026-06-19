@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgrade Suntory to 1.1.0
+
 ### Fixed
 - Fix integration test type to mocha
 

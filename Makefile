@@ -1,4 +1,4 @@
-SUNTORY_VERSION = 0.12.0
+SUNTORY_VERSION = 1.1.0
 
 ################################################################
 # User configuration variables
@@ -39,8 +39,12 @@ clean:
 
 # Retrieve the Pyhon package dependencies
 deps:
-	npm install -g bob@5.0.1
+	npm install -g bob@5.2.1
 	bob dep
+
+deps-extra-apt:
+	apt-get update
+	apt-get install -y markdownlint
 
 deps-upgrade:
 	bob updep
@@ -93,6 +97,43 @@ update-dotfiles: stage
 	  cp .gitignore ../../../../.gitignore && \
 	  cp eslint.config.js ../../../../eslint.config.js && \
 	  cp .rtk.json ../../../../.rtk.json
+	make -f Makefile-extras x-overwrite-dotfiles
+
+# Update partial snippets using the generator-node
+update-partials: GENERATOR_COMPONENT = $(shell yq .generator.component suntory.yml)
+update-partials: GENERATOR_INPUTS_PROJECT_ID = $(shell yq .generator.inputs.project_id suntory.yml)
+update-partials: GENERATOR_INPUTS_PROJECT_NAME = $(shell yq .generator.inputs.project_name suntory.yml)
+update-partials: GENERATOR_INPUTS_PROJECT_DESC = $(shell yq .generator.inputs.project_desc suntory.yml)
+update-partials: GENERATOR_INPUTS_AUTHOR_NAME = $(shell yq .generator.inputs.author_name suntory.yml)
+update-partials: GENERATOR_INPUTS_AUTHOR_EMAIL = $(shell yq .generator.inputs.author_email suntory.yml)
+update-partials: GENERATOR_INPUTS_AUTHOR_URL = $(shell yq .generator.inputs.author_url suntory.yml)
+update-partials: GENERATOR_INPUTS_GITHUB_ID = $(shell yq .generator.inputs.github_id suntory.yml)
+update-partials: GENERATOR_INPUTS_GITHUB_REPO = $(shell yq .generator.inputs.github_repo suntory.yml)
+update-partials: GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX = $(shell yq .generator.inputs.github_token_prefix suntory.yml)
+update-partials: stage
+	cd stage/ && \
+	  rm -rf generator-node/ && \
+	  git clone https://github.com/cliffano/generator-node && \
+	  cd generator-node && \
+	  make deps && \
+	  node_modules/.bin/plop $(GENERATOR_COMPONENT)-partials -- \
+	    --project_id "$(GENERATOR_INPUTS_PROJECT_ID)" \
+		--project_name "$(GENERATOR_INPUTS_PROJECT_NAME)" \
+		--project_desc "$(GENERATOR_INPUTS_PROJECT_DESC)" \
+		--author_name "$(GENERATOR_INPUTS_AUTHOR_NAME)" \
+		--author_email "$(GENERATOR_INPUTS_AUTHOR_EMAIL)" \
+		--author_url "$(GENERATOR_INPUTS_AUTHOR_URL)" \
+		--github_id "$(GENERATOR_INPUTS_GITHUB_ID)" \
+		--github_repo "$(GENERATOR_INPUTS_GITHUB_REPO)" \
+		--github_token_prefix "$(GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX)"
+	for block in AVATAR BADGES BUILD_REPORTS DEVELOPERS_GUIDE; do \
+	  partial_file=$$(printf "%s" "$$block" | tr "A-Z" "a-z"); \
+	  ex -s \
+	    -c "/<!-- BEGIN:$$block -->/+1,/<!-- END:$$block -->/-1d" \
+	    -c "/<!-- BEGIN:$$block -->/r stage/generator-node/stage/$(GENERATOR_COMPONENT)-partials/$$partial_file.txt" \
+	    -c 'wq' \
+	    README.md; \
+	done
 
 ################################################################
 # Formatting targets
@@ -105,6 +146,7 @@ style:
 
 lint: stage
 	bob lint
+	mdl -r ~MD013,~MD029 $(shell find . -path ./stage -prune -o -path ./node_modules -prune -o -name "CHANGELOG.md" -prune -o -name "*.md" -print)
 
 complexity: stage
 	bob complexity
@@ -113,7 +155,7 @@ test:
 	MOCHA_OPTIONS="--timeout 5000" bob test
 
 test-integration:
-	bob test-integration
+	MOCHA_OPTIONS="--timeout 5000" bob test-integration
 
 test-examples:
 	mkdir -p stage/test-examples/
@@ -123,7 +165,7 @@ test-examples:
 	done
 
 coverage:
-	bob coverage
+	MOCHA_OPTIONS="--timeout 5000" bob coverage
 
 ################################################################
 # Release targets
@@ -162,4 +204,4 @@ doc: stage
 
 ################################################################
 
-.PHONY: all ci clean complexity configurations coverage deps deps-extra-apt deps-upgrade rmdeps doc export export export install install-wheel lint name package package publish reinstall release-major release-minor release-patch stage style test test-examples test-integration uninstall update-dotfiles update-to-latest update-to-latest update-to-main update-to-version
+.PHONY: all ci clean complexity configurations coverage deps deps-extra-apt deps-upgrade rmdeps doc export export export install install-wheel lint name package package publish reinstall release-major release-minor release-patch stage style test test-examples test-integration uninstall update-dotfiles update-partials update-to-latest update-to-latest update-to-main update-to-version

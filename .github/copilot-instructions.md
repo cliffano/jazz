@@ -195,7 +195,7 @@ git -c include.path=~/.gitconfig-pakkunbot commit -m "Your clear commit message"
 git -c include.path=~/.gitconfig-pakkunbot push
 ```
 
-### Why `git add -A`?
+### Why `git add -A`
 
 The `-A` flag ensures **all modified and new files** are staged for commit. Without it, changes can be missed (as discovered during development), causing incomplete commits and failed CI runs. Always explicitly run `git add -A` before committing.
 

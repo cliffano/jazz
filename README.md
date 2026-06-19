@@ -1,11 +1,15 @@
+<!-- BEGIN:AVATAR -->
 ![Avatar](avatar.jpg)
+<!-- END:AVATAR -->
 
+<!-- BEGIN:BADGES -->
 [![Build Status](https://github.com/cliffano/jazz/workflows/CI/badge.svg)](https://github.com/cliffano/jazz/actions?query=workflow%3ACI)
 [![Dependencies Status](https://img.shields.io/librariesio/release/npm/jazz)](https://libraries.io/npm/jazz)
 [![Code Scanning Status](https://github.com/cliffano/jazz/workflows/CodeQL/badge.svg)](https://github.com/cliffano/jazz/actions?query=workflow%3ACodeQL)
-[![Coverage Status](https://img.shields.io/coveralls/cliffano/jazz.svg)](https://coveralls.io/r/cliffano/jazz?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/cliffano/jazz/badge.svg?branch=main)](https://coveralls.io/r/cliffano/jazz?branch=main)
 [![Security Status](https://snyk.io/test/github/cliffano/jazz/badge.svg)](https://snyk.io/test/github/cliffano/jazz)
 [![Published Version](https://img.shields.io/npm/v/jazz.svg)](https://www.npmjs.com/package/jazz)
+<!-- END:BADGES -->
 
 # Jazz
 
@@ -171,7 +175,9 @@ The function is provided to the template the same way asynchronous functions are
 
 ## Colophon
 
-[Developer's Guide](https://cliffano.github.io/developers_guide.html#nodejs)
+<!-- BEGIN:DEVELOPERS_GUIDE -->
+[Developer's Guide](https:/cliffano.github.io/developers-guide-nodejs.html)
+<!-- END:DEVELOPERS_GUIDE -->
 
 Build reports:
 

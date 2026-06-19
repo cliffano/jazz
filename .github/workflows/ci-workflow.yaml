@@ -17,12 +17,12 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
-      - run: npm install -g bob@5.0.1
+      - run: npm install -g bob@5.2.1
       - run: bob build
-      # - uses: coverallsapp/github-action@v2.3.6
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     path-to-lcov: .bob/coverage/c8/lcov.info
+      - uses: coverallsapp/github-action@v2.3.6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: .bob/coverage/c8/lcov.info
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
