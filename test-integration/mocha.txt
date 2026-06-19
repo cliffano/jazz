@@ -1,0 +1,72 @@
+
+[0m[0m
+[0m  jazz - access[0m
+  [32m  [32m✔[39m[0m[90m should resolve object getter properties[0m
+  [32m  [32m✔[39m[0m[90m should access array by numeric index[0m
+  [32m  [32m✔[39m[0m[90m should access nested array value[0m
+  [32m  [32m✔[39m[0m[90m should access array via nested object path[0m
+  [32m  [32m✔[39m[0m[90m should access array using variable index[0m
+  [32m  [32m✔[39m[0m[90m should access object property using string key[0m
+  [32m  [32m✔[39m[0m[90m should access object property using expression key[0m
+  [32m  [32m✔[39m[0m[90m should chain expression key with attribute access[0m
+  [32m  [32m✔[39m[0m[90m should access array using nested index expression[0m
+  [32m  [32m✔[39m[0m[90m should access property named end[0m
+
+[0m  jazz - conditionals[0m
+  [32m  [32m✔[39m[0m[90m should render if body when condition is true[0m
+  [32m  [32m✔[39m[0m[90m should skip if body when condition is false[0m
+  [32m  [32m✔[39m[0m[90m should render else body when if condition is false[0m
+  [32m  [32m✔[39m[0m[90m should render elif branch when primary condition is false[0m
+  [32m  [32m✔[39m[0m[90m should evaluate multiple elif branches in order[0m
+  [32m  [32m✔[39m[0m[90m should evaluate empty operator for empty string[0m
+  [32m  [32m✔[39m[0m[90m should evaluate not empty operator for non-empty array[0m
+  [32m  [32m✔[39m[0m[90m should evaluate and/or precedence with parentheses[0m
+  [32m  [32m✔[39m[0m[90m should evaluate grouped expression with top-level or[0m
+  [32m  [32m✔[39m[0m[90m should evaluate not unary operator[0m
+  [32m  [32m✔[39m[0m[90m should evaluate eq operator[0m
+  [32m  [32m✔[39m[0m[90m should evaluate neq operator[0m
+  [32m  [32m✔[39m[0m[90m should evaluate synchronous function calls in conditions[0m
+
+[0m  jazz - expressions[0m
+  [32m  [32m✔[39m[0m[90m should render string literal expressions[0m
+  [32m  [32m✔[39m[0m[90m should render number literal expressions[0m
+  [32m  [32m✔[39m[0m[90m should evaluate and expression to right-hand value[0m
+  [32m  [32m✔[39m[0m[90m should evaluate numeric equality expression[0m
+  [32m  [32m✔[39m[0m[90m should evaluate greater-than comparison[0m
+  [32m  [32m✔[39m[0m[90m should parse hexadecimal numbers in arithmetic calls[0m
+  [32m  [32m✔[39m[0m[90m should evaluate combined boolean and comparison expression[0m
+
+[0m  jazz - functions[0m
+  [32m  [32m✔[39m[0m[90m should call asynchronous function without arguments[0m
+  [32m  [32m✔[39m[0m[90m should call asynchronous function with one string argument[0m
+  [32m  [32m✔[39m[0m[90m should call asynchronous function with multiple arguments[0m
+  [32m  [32m✔[39m[0m[90m should call namespaced asynchronous function[0m
+  [32m  [32m✔[39m[0m[90m should render delayed asynchronous function results[0m
+  [32m  [32m✔[39m[0m[90m should support html escaping via function[0m
+  [32m  [32m✔[39m[0m[90m should pass hash literals to functions[0m
+  [32m  [32m✔[39m[0m[90m should pass nested hash literals to functions[0m
+  [32m  [32m✔[39m[0m[90m should pass expression values inside hash literals[0m
+  [32m  [32m✔[39m[0m[90m should call function with indexed expression and hash argument[0m
+  [32m  [32m✔[39m[0m[90m should render synchronous function output using @ in echo[0m
+  [32m  [32m✔[39m[0m[90m should evaluate synchronous function output in comparisons[0m
+
+[0m  jazz - foreach[0m
+  [32m  [32m✔[39m[0m[90m should iterate over arrays[0m
+  [32m  [32m✔[39m[0m[90m should iterate nested foreach blocks[0m
+  [32m  [32m✔[39m[0m[90m should iterate over object key-value pairs[0m
+  [32m  [32m✔[39m[0m[90m should expose __index for array iteration[0m
+  [32m  [32m✔[39m[0m[90m should expose __count for array iteration[0m
+  [32m  [32m✔[39m[0m[90m should keep trailing text outside foreach block[0m
+
+[0m  jazz - rendering[0m
+  [32m  [32m✔[39m[0m[90m should return plain text when template has no expressions[0m
+  [32m  [32m✔[39m[0m[90m should interpolate variables from namespace[0m
+  [32m  [32m✔[39m[0m[90m should resolve nested object attributes[0m
+  [32m  [32m✔[39m[0m[90m should keep line breaks and carriage returns[0m
+  [32m  [32m✔[39m[0m[90m should keep quotes in output[0m
+  [32m  [32m✔[39m[0m[90m should render literal braces expression[0m
+  [32m  [32m✔[39m[0m[90m should support eval alias for backward compatibility[0m
+
+
+[92m [0m[32m 55 passing[0m[90m (40ms)[0m
+

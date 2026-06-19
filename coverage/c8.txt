@@ -1,3 +1,7 @@
+(node:2407) [DEP0151] DeprecationWarning: Package /opt/hostedtoolcache/node/22.22.3/x64/lib/node_modules/bob/node_modules/jazz/ has a "main" field set to "./lib/jazz", excluding the full filename and extension to the resolved file at "lib/jazz.js", imported from /opt/hostedtoolcache/node/22.22.3/x64/lib/node_modules/bob/lib/bob.js.
+ Automatic extension resolution of the "main" field is deprecated for ES modules.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+test | /opt/hostedtoolcache/node/22.22.3/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
 
 [0m[0m
 [0m  ast - node toString[0m
@@ -84,3 +88,18 @@
 
 [92m [0m[32m 49 passing[0m[90m (82ms)[0m
 
+SUCCESS | exit code 0
+--------------|---------|----------|---------|---------|-------------------
+File          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------|---------|----------|---------|---------|-------------------
+All files     |     100 |      100 |     100 |     100 |                   
+ lib          |     100 |      100 |     100 |     100 |                   
+  jazz.js     |     100 |      100 |     100 |     100 |                   
+ lib/jazz     |     100 |      100 |     100 |     100 |                   
+  ast.js      |     100 |      100 |     100 |     100 |                   
+  compiler.js |     100 |      100 |     100 |     100 |                   
+  error.js    |     100 |      100 |     100 |     100 |                   
+  parser.js   |     100 |      100 |     100 |     100 |                   
+  scanner.js  |     100 |      100 |     100 |     100 |                   
+  tokens.js   |     100 |      100 |     100 |     100 |                   
+--------------|---------|----------|---------|---------|-------------------
