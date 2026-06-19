@@ -1,11 +1,7 @@
 
-added 52 packages, and audited 53 packages in 939ms
+added 52 packages, and audited 53 packages in 871ms
 
 19 packages are looking for funding
   run `npm fund` for details
 
 found 0 vulnerabilities
-npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
-npm warn allow-scripts   es5-ext@0.10.64 (postinstall:  node -e "try{require('./_postinstall')}catch(e){}" || exit 0)
-npm warn allow-scripts
-npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
