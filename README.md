@@ -179,10 +179,13 @@ The function is provided to the template the same way asynchronous functions are
 [Developer's Guide](https:/cliffano.github.io/developers-guide-nodejs.html)
 <!-- END:DEVELOPERS_GUIDE -->
 
+<!-- BEGIN:BUILD_REPORTS -->
 Build reports:
 
 * [Code complexity report](https://cliffano.github.io/jazz/complexity/plato/index.html)
 * [Unit tests report](https://cliffano.github.io/jazz/test/mocha.txt)
 * [Test coverage report](https://cliffano.github.io/jazz/coverage/c8/index.html)
-* [Integration tests report](https://cliffano.github.io/jazz/test-integration/cmdt.txt)
+* [Integration tests report](https://cliffano.github.io/jazz/test-integration/mocha.txt)
 * [API Documentation](https://cliffano.github.io/jazz/doc/jsdoc/index.html)
+
+<!-- END:BUILD_REPORTS -->
