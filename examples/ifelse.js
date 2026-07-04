@@ -8,13 +8,24 @@ const template = jazz.compile(data);
 // Render the template three times with different inputs
 //
 
-template.eval({
-  "firstVar": "MONKEYS!"
-}, function(data) { console.log(data); });
+template.eval(
+  {
+    firstVar: "MONKEYS!",
+  },
+  function (data) {
+    console.log(data);
+  },
+);
 
-template.eval({
-  "secondVar": "GIBBONS!"
-}, function(data) { console.log(data); });
+template.eval(
+  {
+    secondVar: "GIBBONS!",
+  },
+  function (data) {
+    console.log(data);
+  },
+);
 
-template.eval({}, function(data) { console.log(data); });
-
+template.eval({}, function (data) {
+  console.log(data);
+});
