@@ -34,9 +34,7 @@
   [32m  [32m✔[39m[0m[90m should expose default and named api members[0m
 
 [0m  jazz - compile[0m
-  [32m  [32m✔[39m[0m[90m should wire scanner parser and compiler with default options[0m[33m (51ms)[0m
-(node:3110) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+  [32m  [32m✔[39m[0m[90m should wire scanner parser and compiler with default options[0m[33m (49ms)[0m
   [32m  [32m✔[39m[0m[90m should apply parser and compiler debug flags and filename[0m
 
 [0m  parser - exports[0m
@@ -63,6 +61,9 @@
 
 [0m  scanner - next[0m
   [32m  [32m✔[39m[0m[90m should scan echo text and escaped braces[0m
+  [32m  [32m✔[39m[0m[90m should decode escape sequences in echo text[0m
+  [32m  [32m✔[39m[0m[90m should keep unknown escape sequences in echo text as-is[0m
+  [32m  [32m✔[39m[0m[90m should keep trailing backslash in echo text at end of source[0m
   [32m  [32m✔[39m[0m[90m should scan code keywords punctuation and primitives[0m
   [32m  [32m✔[39m[0m[90m should decode escaped characters and keep unknown escape sequences[0m
   [32m  [32m✔[39m[0m[90m should throw syntax error for malformed escape-heavy string input[0m
@@ -84,5 +85,5 @@
   [32m  [32m✔[39m[0m[90m should expose constants in default export[0m
 
 
-[92m [0m[32m 49 passing[0m[90m (88ms)[0m
+[92m [0m[32m 52 passing[0m[90m (82ms)[0m
 
