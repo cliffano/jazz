@@ -51,6 +51,27 @@ describe("scanner - next", function () {
     assert.equals(scanned[1].type, tokens.EOF);
   });
 
+  it("should decode escape sequences in echo text", function () {
+    const scanned = scanAll("line1\\nline2\\ttabbed\\\\backslash\\rcarriage");
+
+    assert.equals(scanned[0].type, tokens.ECHO);
+    assert.equals(scanned[0].value, "line1\nline2\ttabbed\\backslash\rcarriage");
+  });
+
+  it("should keep unknown escape sequences in echo text as-is", function () {
+    const scanned = scanAll("hello\\qworld");
+
+    assert.equals(scanned[0].type, tokens.ECHO);
+    assert.equals(scanned[0].value, "hello\\qworld");
+  });
+
+  it("should keep trailing backslash in echo text at end of source", function () {
+    const scanned = scanAll("text\\");
+
+    assert.equals(scanned[0].type, tokens.ECHO);
+    assert.equals(scanned[0].value, "text\\");
+  });
+
   it("should scan code keywords punctuation and primitives", function () {
     const source =
       "{if cond and other or not flag eq true neq false gt 10 foreach item in items end else elif empty val @fn(0x1A, 12.5, \"ok\", {'key': 1}) . [ ] : , ( )}";
