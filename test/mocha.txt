@@ -34,7 +34,7 @@
   [32m  [32m✔[39m[0m[90m should expose default and named api members[0m
 
 [0m  jazz - compile[0m
-  [32m  [32m✔[39m[0m[90m should wire scanner parser and compiler with default options[0m[33m (47ms)[0m
+  [32m  [32m✔[39m[0m[90m should wire scanner parser and compiler with default options[0m[33m (50ms)[0m
   [32m  [32m✔[39m[0m[90m should apply parser and compiler debug flags and filename[0m
 
 [0m  parser - exports[0m
@@ -85,5 +85,5 @@
   [32m  [32m✔[39m[0m[90m should expose constants in default export[0m
 
 
-[92m [0m[32m 52 passing[0m[90m (76ms)[0m
+[92m [0m[32m 52 passing[0m[90m (91ms)[0m
 
