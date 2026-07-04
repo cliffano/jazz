@@ -1,5 +1,5 @@
-x-overwrite-dotfiles:
-    # RTK config does not follow generator template because Bob is using v<version> format predating the template.
+x-post-update-dotfiles:
+    # RTK config does not follow generator template because this package is using v<version> format predating the template.
 	git checkout .rtk.json
 
-.PHONY: x-overwrite-dotfiles
+.PHONY: x-post-update-dotfiles

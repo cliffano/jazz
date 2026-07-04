@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Upgrade Suntory to 1.1.0
+- Update Makefile-extras target to fit Suntory run hook
 
 ### Fixed
 - Fix integration test type to mocha
