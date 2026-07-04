@@ -1,3 +1,0 @@
-Using directory: .bob/test-integration/cmdt-1783130313367-2450
-
-0 test, 0 success, 0 failure
