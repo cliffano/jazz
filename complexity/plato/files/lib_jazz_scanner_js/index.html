@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">466</p>
+      <p class="stat">410</p>
     </div>
   </div>
   <div class="row historical">
@@ -97,12 +97,6 @@ import { SyntaxError } from &quot;./error.js&quot;;
 const STATE_ECHO = 0;
 const STATE_CODE = 1;
 
-/**
- * Determine whether a character is a valid identifier character.
- *
- * @param {string|undefined} char: character to evaluate
- * @returns {boolean} true when character is valid for identifiers
- */
 function isIdentChar(char) {
   if (typeof char === &quot;undefined&quot;) {
     return false;
@@ -116,14 +110,6 @@ function isIdentChar(char) {
   );
 }
 
-/**
- * Check if source at index starts with a keyword boundary.
- *
- * @param {string} name: keyword name
- * @param {string} source: source string
- * @param {number} index: source offset
- * @returns {boolean} true when a full keyword match is found
- */
 function keyword(name, source, index) {
   let cursor = index;
 
@@ -141,13 +127,6 @@ function keyword(name, source, index) {
   return !isIdentChar(source[cursor]);
 }
 
-/**
- * Parse an identifier token value from source.
- *
- * @param {string} source: source string
- * @param {number} index: source offset
- * @returns {string} parsed identifier
- */
 function ident(source, index) {
   let result = &quot;&quot;;
   let cursor = index;
@@ -164,13 +143,6 @@ function ident(source, index) {
   return result;
 }
 
-/**
- * Parse a numeric token value from source.
- *
- * @param {string} source: source string
- * @param {number} index: source offset
- * @returns {string} parsed numeric literal text
- */
 function num(source, index) {
   let isHex = false;
   let seenDecimal = false;
@@ -208,13 +180,6 @@ function num(source, index) {
   return source.slice(index, cursor);
 }
 
-/**
- * Parse a quoted string token value from source.
- *
- * @param {string} source: source string
- * @param {number} index: source offset at opening quote
- * @returns {string} parsed string value
- */
 function str(source, index) {
   let result = &quot;&quot;;
   const quote = source[index];
@@ -261,16 +226,7 @@ function str(source, index) {
   return result;
 }
 
-/**
- * Scanner converting a Jazz template source string into tokens.
- */
 class Scanner {
-  /**
-   * Create a scanner.
-   *
-   * @param {string} source: template source text
-   * @param {string} [filename]: template filename for error reporting
-   */
   constructor(source, filename) {
     this.source = source;
     this.pos = 0;
@@ -281,11 +237,6 @@ class Scanner {
     this.state = STATE_ECHO;
   }
 
-  /**
-   * Produce the next token from the source stream.
-   *
-   * @returns {Object} token object with type and positional metadata
-   */
   next() {
     if (this.state === STATE_ECHO) {
       return this._echoState();
@@ -538,13 +489,6 @@ class Scanner {
   }
 }
 
-/**
- * Create a scanner instance from source input.
- *
- * @param {string} source: template source text
- * @param {string} [filename]: template filename for error reporting
- * @returns {Scanner} scanner instance
- */
 function createScanner(source, filename) {
   return new Scanner(source, filename);
 }
