@@ -171,7 +171,7 @@ You can also group expressions using parentheses:
 
 ### Looping over an array
 
-```text
+```html
 {foreach item in someArray}
     <p>{item}</p>
 {end}
@@ -182,7 +182,7 @@ an Array-like interface.
 
 ### Looping over an object
 
-```text
+```html
 {foreach pair in someObject}
     <p>{pair.key} = {pair.value}</p>
 {end}
@@ -190,7 +190,7 @@ an Array-like interface.
 
 ### Synchronous functions
 
-```text
+```html
 {if @blah('a')}
     <p>There were so many blahs in a</p>
 {end}
@@ -200,7 +200,7 @@ The function is provided to the template the same way asynchronous functions are
 
 ### Loop counters / index
 
-```text
+```html
 {foreach pair in someObject}
     <p>Loop number (1 based): {__count}</p>
     <p>Index (0 based): {__index}</p>
@@ -210,9 +210,13 @@ The function is provided to the template the same way asynchronous functions are
 
 ### Looking into arrays/objects
 
-```text
+```html
 <p>{object['array'][0].cheese}</p>
 ```
+
+## Credits
+
+Jazz was created by the brilliant Thomas Lee and Daniel Brain during the era of Shine Technologies early adoption of node.
 
 ## Colophon
 
