@@ -1,11 +1,11 @@
-var jazz = require("../lib/jazz");
-var fs = require("fs");
+import jazz from "../lib/jazz";
+import fs from "fs";
 
-var data = fs.readFileSync(__dirname + "/include_main.jazz", "utf8");
-var template = jazz.compile(data);
-var params = {
+const data = fs.readFileSync(__dirname + "/include_main.jazz", "utf8");
+const template = jazz.compile(data);
+const params = {
   "include": function(filename, cb) {
-    var tpl = jazz.compile(fs.readFileSync(__dirname + "/" + filename, "utf8"));
+    const tpl = jazz.compile(fs.readFileSync(__dirname + "/" + filename, "utf8"));
     tpl.eval(params, cb);
   }
 };

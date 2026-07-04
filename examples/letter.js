@@ -1,8 +1,8 @@
-var jazz = require("../lib/jazz");
-var fs = require("fs");
+import jazz from "../lib/jazz";
+import fs from "fs";
 
-var data = fs.readFileSync(__dirname + "/letter.jazz", "utf8");
-var template = jazz.compile(data);
+const data = fs.readFileSync(__dirname + "/letter.jazz", "utf8");
+const template = jazz.compile(data);
 template.eval({
     "recipient":"Tom",
     "friendly":true,

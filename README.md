@@ -15,6 +15,8 @@
 
 Jazz is a minimalistic template engine with zero runtime dependency.
 
+One of the OG template engines with first commit from 2010.
+
 ## Installation
 
 ```shell
@@ -24,10 +26,10 @@ npm install jazz
 ## Usage
 
 ```javascript
-var jazz = require("jazz");
-var sys = require("sys");
+import jazz from "jazz";
+import sys from "sys";
 
-var template = jazz.compile("my template source code {someVariable}");
+const template = jazz.compile("my template source code {someVariable}");
 template.eval({"someVariable": "lolmuffin"}, function(data) { sys.puts(data); });
 ```
 
@@ -84,9 +86,9 @@ result. e.g. here we simulate a blocking operation using setTimeout().
 ```javascript
 // sum.js
 
-var jazz = require("jazz");
+import jazz = from "jazz";
 
-var params = {
+const params = {
     sum: function(arg1, arg2, cb) {
         setTimeout(function() {
             cb((arg1 + arg2).toString());
