@@ -29,9 +29,9 @@
     "test": "./test"
   },
   "devDependencies": {
-    "@sinonjs/referee": "^11.0.1",
-    "esmock": "^2.7.3",
-    "sinon": "^21.0.0"
+    "@sinonjs/referee": "^11.0.2",
+    "esmock": "^2.7.6",
+    "sinon": "^22.0.0"
   },
   "scripts": {},
   "engines": {
