@@ -17,8 +17,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
-      - run: npm install -g bob@5.2.1
-      - run: bob build
+      - run: make deps
+      - run: make ci
       - uses: coverallsapp/github-action@v2.3.6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
