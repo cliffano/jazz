@@ -68,5 +68,5 @@
   [32m  [32m✔[39m[0m[90m should support eval alias for backward compatibility[0m
 
 
-[92m [0m[32m 55 passing[0m[90m (37ms)[0m
+[92m [0m[32m 55 passing[0m[90m (40ms)[0m
 
