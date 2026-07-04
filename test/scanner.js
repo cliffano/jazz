@@ -55,7 +55,10 @@ describe("scanner - next", function () {
     const scanned = scanAll("line1\\nline2\\ttabbed\\\\backslash\\rcarriage");
 
     assert.equals(scanned[0].type, tokens.ECHO);
-    assert.equals(scanned[0].value, "line1\nline2\ttabbed\\backslash\rcarriage");
+    assert.equals(
+      scanned[0].value,
+      "line1\nline2\ttabbed\\backslash\rcarriage",
+    );
   });
 
   it("should keep unknown escape sequences in echo text as-is", function () {
