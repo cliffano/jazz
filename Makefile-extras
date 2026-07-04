@@ -1,5 +1,11 @@
+x-post-lint:
+	$$(npm root -g)/bob/node_modules/.bin/eslint examples/
+
+x-post-style:
+	$$(npm root -g)/bob/node_modules/.bin/prettier --write examples/
+
 x-post-update-dotfiles:
     # RTK config does not follow generator template because this package is using v<version> format predating the template.
 	git checkout .rtk.json
 
-.PHONY: x-post-update-dotfiles
+.PHONY: x-post-lint x-post-style x-post-update-dotfiles

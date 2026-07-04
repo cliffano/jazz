@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add examples styling and linting
+
 ### Changed
 - Upgrade Suntory to 1.4.1
 - Update Makefile-extras target to fit Suntory run hook
