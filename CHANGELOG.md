@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fix integration test type to mocha
+- Upgrade dependencies to latest
 
 ## 1.0.0 - 2026-05-24
 ### Added
