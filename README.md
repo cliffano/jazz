@@ -175,7 +175,6 @@ You can also group expressions using parentheses:
 {end}
 ```
 
-
 The value being iterated over can be any expression supporting
 an Array-like interface.
 
@@ -185,8 +184,8 @@ an Array-like interface.
 {foreach pair in someObject}
     <p>{pair.key} = {pair.value}</p>
 {end}
-
 ```
+
 ### Synchronous functions
 
 ```text
