@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Set min node engine to >= 22.0.0
+- Upgrade Suntory to 1.6.0
+- Replace Copilot instructions with AGENTS.md
 
 ## 1.1.0 - 2026-07-04
 ### Added
