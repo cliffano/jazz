@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Suntory to 1.6.0
 - Replace Copilot instructions with AGENTS.md
 
+### Fixed
+- Fix deprecated automatic extension resolution in ESM main field #18
+
 ## 1.1.0 - 2026-07-04
 ### Added
 - Add examples styling and linting

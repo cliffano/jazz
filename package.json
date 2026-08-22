@@ -11,7 +11,7 @@
   "contributors": [
     "All contributors (https://github.com/cliffano/jazz/graphs/contributors)"
   ],
-  "main": "./lib/jazz",
+  "main": "./lib/jazz.js",
   "bin": {
     "jazz": "./bin/jazz.js"
   },
