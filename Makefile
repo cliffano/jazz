@@ -4,7 +4,7 @@
 ################################################################
 
 # Suntory info
-SUNTORY_VERSION = 1.6.0
+SUNTORY_VERSION = 1.7.0
 
 UPDATE_MAKEFILE = suntory
 UPDATE_GENERATOR = node
@@ -14,7 +14,7 @@ UPDATE_PARTIALS = AVATAR BADGES BUILD_REPORTS DEVELOPERS_GUIDE
 ################################################################
 # User configuration variables
 # https://github.com/cliffano/suntory#configuration
-# Configuration variables should be stored in suntory.yml config file,
+# Configuration variables should be stored in suntory.yml config file
 
 # PACKAGE_NAME is the name of the node.js package
 PACKAGE_NAME=$(shell yq .package_name suntory.yml)
@@ -49,9 +49,9 @@ clean:
 
 # Retrieve the Node.js package dependencies
 deps:
+	$(call deps_extra)
 	npm install -g bob@5.3.0
 	bob dep
-	$(call deps_extra)
 
 deps-extra-apt:
 	apt-get update
