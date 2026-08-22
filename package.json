@@ -31,7 +31,7 @@
   "devDependencies": {
     "@sinonjs/referee": "^11.0.2",
     "esmock": "^2.7.6",
-    "sinon": "^22.0.0"
+    "sinon": "^22.1.0"
   },
   "scripts": {},
   "engines": {
