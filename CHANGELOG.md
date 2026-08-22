@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fix deprecated automatic extension resolution in ESM main field #18
+- Fix examples broken dirname and linked import
 
 ## 1.1.0 - 2026-07-04
 ### Added
