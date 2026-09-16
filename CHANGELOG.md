@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgrade Suntory to 1.9.0
+
 ## 1.2.0 - 2026-08-22
 ### Changed
 - Set min node engine to >= 22.0.0
